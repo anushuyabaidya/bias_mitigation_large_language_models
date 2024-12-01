@@ -1,3 +1,4 @@
+import argparse
 import json
 
 import datasets
@@ -105,22 +106,22 @@ if __name__ == '__main__':
     device = "cuda:0" if torch.cuda.is_available() else "cpu"
     print("Device:", device)
 
-    # parser = argparse.ArgumentParser()
-    # parser.add_argument("--dataset_path", required=True)
-    # parser.add_argument("--model_path", required=True)
-    #
-    # args = parser.parse_args()
-    #
-    # print("args:", args)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--dataset_path", required=True)
+    parser.add_argument("--model_path", required=True)
 
-    # dataset_path = args.dataset_path
-    # model_path = args.model_path
+    args = parser.parse_args()
 
-    dataset_path = "./data/sterio_set/dev.json"
-    # model_path = "meta-llama/Meta-Llama-3-8B"
-    # model_path = "google-t5/t5-base"
-    # model_path = "./results/fine-tuned/xlnet-base-cased/"
-    model_path = "xlnet/xlnet-base-cased"
+    print("args:", args)
+
+    dataset_path = args.dataset_path
+    model_path = args.model_path
+
+    # dataset_path = "./data/sterio_set/dev.json"
+    # # model_path = "meta-llama/Meta-Llama-3-8B"
+    # # model_path = "google-t5/t5-base"
+    # # model_path = "./results/fine-tuned/xlnet-base-cased/"
+    # model_path = "xlnet/xlnet-base-cased"
 
     evaluate_llm = EvaluateLLM(model_path=model_path, device=device)
     with open(dataset_path, 'r', encoding='utf-8') as f:
