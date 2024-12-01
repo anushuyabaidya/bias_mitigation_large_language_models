@@ -113,7 +113,8 @@ if __name__ == '__main__':
     # model_path = args.model_path
 
     dataset_path = "./data/sterio_set/dev.json"
-    model_path = "meta-llama/Meta-Llama-3-8B"
+    # model_path = "meta-llama/Meta-Llama-3-8B"
+    model_path = "google/t5-base"
 
     evaluate_llm = EvaluateLLM(model_path=model_path, device=device)
     with open(dataset_path, 'r', encoding='utf-8') as f:
