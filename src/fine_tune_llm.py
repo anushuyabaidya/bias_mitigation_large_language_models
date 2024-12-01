@@ -98,6 +98,7 @@ class FineTuneLLM:
     def save_model(self, save_path):
         print("Model saved to:", save_path)
         self.model.save_pretrained(save_path)
+        self.tokenizer.save_pretrained(save_path)
 
 
 if __name__ == '__main__':
@@ -117,7 +118,7 @@ if __name__ == '__main__':
     # model_path = "meta-llama/Meta-Llama-3-8B"
     # model_path = "google-t5/t5-base"
     model_path = "xlnet/xlnet-base-cased"
-    save_path = "./results/fine-tuned/"
+    save_path = "./results/fine-tuned/xlnet-base-cased"
 
     # dataset_path = args.dataset_path
     # model_path = args.model_path
