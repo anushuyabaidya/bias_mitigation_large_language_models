@@ -27,7 +27,6 @@ class EvaluateLLM:
 
     def create_dataset(self, data):
         dataset_list = []
-        data = data[:10]
 
         # Iterate over intersentence data
         for intersentence in data['data']['intersentence']:
