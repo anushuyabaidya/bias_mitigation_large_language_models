@@ -80,7 +80,8 @@ class EvaluateLLM:
             save_strategy="epoch",
             load_best_model_at_end=True,
             push_to_hub=True,
-            output_dir=self.output_dir
+            output_dir=self.output_dir,
+            seed=42
         )
 
         trainer = Trainer(
@@ -114,7 +115,7 @@ if __name__ == '__main__':
     dataset_path = "./data/sterio_set/dev.json"
     # model_path = "meta-llama/Meta-Llama-3-8B"
     # model_path = "google-t5/t5-base"
-    model_path = "bert-base-uncased"
+    model_path = "xlnet/xlnet-base-cased"
 
     evaluate_llm = EvaluateLLM(model_path=model_path, device=device)
     with open(dataset_path, 'r', encoding='utf-8') as f:
