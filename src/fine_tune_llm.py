@@ -96,6 +96,7 @@ class FineTuneLLM:
         trainer.train()
 
     def save_model(self, save_path):
+        print("Model saved to:", save_path)
         self.model.save_pretrained(save_path)
 
 
