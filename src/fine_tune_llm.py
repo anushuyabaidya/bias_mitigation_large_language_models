@@ -1,4 +1,3 @@
-import argparse
 import json
 
 import datasets
@@ -117,7 +116,7 @@ if __name__ == '__main__':
     # model_path = "meta-llama/Meta-Llama-3-8B"
     # model_path = "google-t5/t5-base"
     model_path = "xlnet/xlnet-base-cased"
-    save_path = "./results/"
+    save_path = "./results/fine-tuned/"
 
     # dataset_path = args.dataset_path
     # model_path = args.model_path
