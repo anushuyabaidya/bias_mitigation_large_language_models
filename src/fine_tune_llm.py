@@ -11,7 +11,10 @@ from sklearn.model_selection import train_test_split
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 from transformers import DataCollatorWithPadding
 from transformers import TrainingArguments, Trainer
+from transformers import set_seed
 
+# Set a fixed seed
+set_seed(42)
 
 class FineTuneLLM:
     def __init__(self, model_path, device):
