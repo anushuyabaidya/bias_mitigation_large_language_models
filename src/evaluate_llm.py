@@ -13,7 +13,6 @@ from transformers import DataCollatorWithPadding
 from transformers import TrainingArguments, Trainer
 from transformers import set_seed
 
-# Set a fixed seed
 set_seed(42)
 
 
@@ -55,7 +54,6 @@ class EvaluateLLM:
         train_data = datasets.Dataset.from_dict(train_data)
         test_data = datasets.Dataset.from_dict(test_data)
 
-        # You can also specify the split name
         dataset_dict = DatasetDict({'train': train_data, 'test': test_data})
         return dataset_dict
 
@@ -116,12 +114,6 @@ if __name__ == '__main__':
 
     dataset_path = args.dataset_path
     model_path = args.model_path
-
-    # dataset_path = "./data/sterio_set/dev.json"
-    # # model_path = "meta-llama/Meta-Llama-3-8B"
-    # # model_path = "google-t5/t5-base"
-    # # model_path = "./results/fine-tuned/xlnet-base-cased/"
-    # model_path = "xlnet/xlnet-base-cased"
 
     evaluate_llm = EvaluateLLM(model_path=model_path, device=device)
     with open(dataset_path, 'r', encoding='utf-8') as f:

@@ -13,8 +13,8 @@ from transformers import DataCollatorWithPadding
 from transformers import TrainingArguments, Trainer
 from transformers import set_seed
 
-# Set a fixed seed
 set_seed(42)
+
 
 class FineTuneLLM:
     def __init__(self, model_path, device):
@@ -54,7 +54,6 @@ class FineTuneLLM:
         train_data = datasets.Dataset.from_dict(train_data)
         test_data = datasets.Dataset.from_dict(test_data)
 
-        # You can also specify the split name
         dataset_dict = DatasetDict({'train': train_data, 'test': test_data})
         return dataset_dict
 
@@ -117,12 +116,6 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     print("args:", args)
-
-    # dataset_path = "./data/sterio_set/dev.json"
-    # # model_path = "meta-llama/Meta-Llama-3-8B"
-    # # model_path = "google-t5/t5-base"
-    # model_path = "xlnet/xlnet-base-cased"
-    # save_path = "./results/fine-tuned/xlnet-base-cased"
 
     dataset_path = args.dataset_path
     model_path = args.model_path
