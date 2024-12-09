@@ -1,7 +1,3 @@
-'''
-Created By: Anushuya Baidya
-Date: 5/1/2024
-'''
 import argparse
 import json
 
@@ -15,6 +11,9 @@ from sklearn.model_selection import train_test_split
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 from transformers import DataCollatorWithPadding
 from transformers import TrainingArguments, Trainer
+from transformers import set_seed
+
+set_seed(42)
 
 
 class EvaluateLLM:
@@ -55,7 +54,6 @@ class EvaluateLLM:
         train_data = datasets.Dataset.from_dict(train_data)
         test_data = datasets.Dataset.from_dict(test_data)
 
-        # You can also specify the split name
         dataset_dict = DatasetDict({'train': train_data, 'test': test_data})
         return dataset_dict
 
@@ -85,7 +83,8 @@ class EvaluateLLM:
             save_strategy="epoch",
             load_best_model_at_end=True,
             push_to_hub=True,
-            output_dir=self.output_dir
+            output_dir=self.output_dir,
+            seed=42
         )
 
         trainer = Trainer(

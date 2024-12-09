@@ -1,7 +1,3 @@
-'''
-Created By: Anushuya Baidya
-Date: 5/1/2024
-'''
 import argparse
 import json
 
@@ -15,6 +11,9 @@ from sklearn.model_selection import train_test_split
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 from transformers import DataCollatorWithPadding
 from transformers import TrainingArguments, Trainer
+from transformers import set_seed
+
+set_seed(42)
 
 
 class FineTuneLLM:
@@ -55,7 +54,6 @@ class FineTuneLLM:
         train_data = datasets.Dataset.from_dict(train_data)
         test_data = datasets.Dataset.from_dict(test_data)
 
-        # You can also specify the split name
         dataset_dict = DatasetDict({'train': train_data, 'test': test_data})
         return dataset_dict
 
@@ -101,7 +99,9 @@ class FineTuneLLM:
         trainer.train()
 
     def save_model(self, save_path):
+        print("Model saved to:", save_path)
         self.model.save_pretrained(save_path)
+        self.tokenizer.save_pretrained(save_path)
 
 
 if __name__ == '__main__':
